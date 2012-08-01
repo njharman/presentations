@@ -1,0 +1,24 @@
+# Ansbile ini format targets(hosts) configuration
+
+[local]
+localhost custom_var=devo
+
+[local:vars]
+# bug group_var="cake != True"
+group_var="cake is not True"
+# also can use varible files see group_vars & host_vars
+
+[web]
+ec2-23-21-130-208.compute-1.amazonaws.com hostname=web
+
+[var]
+ec2-184-72-155-102.compute-1.amazonaws.com hostname=foo
+ec2-107-21-177-38.compute-1.amazonaws.com hostname=bar
+
+[aws:children]
+web
+var
+
+[everyone:children]
+local
+aws

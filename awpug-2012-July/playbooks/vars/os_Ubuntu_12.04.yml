@@ -1,0 +1,3 @@
+---
+pkg_git: git
+has_sudoers_dir: true

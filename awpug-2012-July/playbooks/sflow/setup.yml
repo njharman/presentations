@@ -1,0 +1,38 @@
+---
+- name: sflow metrics client
+  hosts: aws
+  vars:
+    sflow_host: example.com
+    sflow_port: 6343
+
+  vars_files:
+    - ../vars/base_vars.yml
+
+  tasks:
+  - name: sflow directory $item
+    action: file path=$item owner=root group=root state=directory
+    with_items:
+      - /opt/sflow/etc
+      - /opt/sflow/var
+      - /opt/sflow/sbin
+
+  - name: hsflowd /opt/sflow/etc/hsflowd.conf
+    action: template src=templates/etc/hsflowd.conf dest=/opt/sflow/etc/hsflowd.conf owner=root group=root
+    notify:
+      - restart hsflowd
+
+  - name: hsflowd /opt/sflow/sbin/hsflowd
+    action: copy src=files/${ansible_distribution}${ansible_distribution_version}/sbin/hsflowd dest=/opt/sflow/sbin/hsflowd owner=root group=root mode=755
+    notify:
+      - restart hsflowd
+
+  - name: hsflowd init.d script
+    action: template src=templates/init.d/hsflowd dest=/etc/init.d/hsflowd owner=root group=root mode=755
+    notify:
+      - restart hsflowd
+
+  - action: service name=hsflowd state=started enabled=true
+
+  handlers:
+    - name: restart hsflowd
+      action: service name=hsflowd state=restarted

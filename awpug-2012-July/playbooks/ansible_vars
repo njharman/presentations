@@ -1,0 +1,188 @@
+somehost | success >> {
+    "ansible_facts": {
+        "ansible_architecture": "x86_64",
+        "ansible_bios_date": "10/21/2011",
+        "ansible_bios_version": "1.9.0",
+        "ansible_distribution": "Ubuntu",
+        "ansible_distribution_release": "precise",
+        "ansible_distribution_version": "12.04",
+        "ansible_eth0": {
+            "ipv4": {
+                "address": "10.11.1.73",
+                "netmask": "255.255.252.0",
+                "network": "10.11.0.0"
+            },
+            "ipv6": [
+                {
+                    "address": "fe80::d6ae:52ff:fe64:d52c",
+                    "prefix": "64",
+                    "scope": "link"
+                }
+            ],
+            "macaddress": "d4:ae:52:64:d5:2c"
+        },
+        "ansible_form_factor": "Rack Mount Chassis",
+        "ansible_fqdn": "somehost",
+        "ansible_hostname": "somehost",
+        "ansible_interfaces": [
+            "lo",
+            "eth0",
+            "virbr0"
+        ],
+        "ansible_kernel": "3.2.0-26-generic",
+        "ansible_lo": {
+            "ipv4": {
+                "address": "127.0.0.1",
+                "netmask": "255.0.0.0",
+                "network": "127.0.0.0"
+            },
+            "ipv6": [
+                {
+                    "address": "::1",
+                    "prefix": "128",
+                    "scope": "host"
+                }
+            ],
+            "macaddress": "00:00:00:00:00:00"
+        },
+        "ansible_machine": "x86_64",
+        "ansible_memfree_mb": 8157,
+        "ansible_memtotal_mb": 12003,
+        "ansible_processor": [
+            "Intel(R) Xeon(R) CPU           E5630  @ 2.53GHz",
+            "Intel(R) Xeon(R) CPU           E5630  @ 2.53GHz",
+            "Intel(R) Xeon(R) CPU           E5630  @ 2.53GHz",
+            "Intel(R) Xeon(R) CPU           E5630  @ 2.53GHz",
+            "Intel(R) Xeon(R) CPU           E5630  @ 2.53GHz",
+            "Intel(R) Xeon(R) CPU           E5630  @ 2.53GHz",
+            "Intel(R) Xeon(R) CPU           E5630  @ 2.53GHz",
+            "Intel(R) Xeon(R) CPU           E5630  @ 2.53GHz",
+            "Intel(R) Xeon(R) CPU           E5630  @ 2.53GHz",
+            "Intel(R) Xeon(R) CPU           E5630  @ 2.53GHz",
+            "Intel(R) Xeon(R) CPU           E5630  @ 2.53GHz",
+            "Intel(R) Xeon(R) CPU           E5630  @ 2.53GHz",
+            "Intel(R) Xeon(R) CPU           E5630  @ 2.53GHz",
+            "Intel(R) Xeon(R) CPU           E5630  @ 2.53GHz",
+            "Intel(R) Xeon(R) CPU           E5630  @ 2.53GHz",
+            "Intel(R) Xeon(R) CPU           E5630  @ 2.53GHz"
+        ],
+        "ansible_processor_cores": 8,
+        "ansible_processor_count": 2,
+        "ansible_product_name": "PowerEdge R410",
+        "ansible_product_serial": "NA",
+        "ansible_product_uuid": "NA",
+        "ansible_product_version": "NA",
+        "ansible_python_version": "2.7.3",
+        "ansible_selinux": false,
+        "ansible_ssh_host_key_dsa_public": "AAAAB3NzaC1kc3MAAACBAJRS7I04y94lu62u7vsgNHncWY0I+7hY/8RbT5VorrxLDVMml+g2wuxblwiqU0fYc5KfluktmfDwao2OsmT0FAf5kVdQfTmnnEYEI7MtwVjBS+wvhwXkD5z0F+8oJh+MRDmiBKTizIKVQyD0niS0iDVV8hVh0UPDJdYjm74153yLAAAAFQDZ0K8QLUY0OfvKrEOjHGuwq3ARFQAAAIA2IssNjtFdtwgPTaqrnWif0gmr/pYNus7GmQGE76m4r1Y4EN1WmKF3xoEQjwZNpSgOH2ER7Ng9uhSjAlNlawzzYIXhMHzImag4l+9kt7Tgp2eWjomzkR6aivq6F1kjW8N/Ap99CLGFfG0M2YAu+X6cvb32rShSmUO5mTK3OucZHQAAAIAy/kcNJHZ+BLZ3ayOpA6RZtkTFYftTHhjPG+dt11ipFKfSRWKPizZiaDvGeueGozDDUjkStrPF+T7F1zeJsljdente60wtjXdCpcYnrEazKObfHrG0xYQPA7GN1MV4n0w5f2HI/8GhSbbBMOW0I4SfInzpGZpj943SPqfyP/n1Cw==",
+        "ansible_ssh_host_key_rsa_public": "AAAAB3NzaC1yc2EAAAADAQABAAABAQC0WevPlyKJHu5VZjtp8B7IZImrGbODCRKgQ8lZ59dWM5vMgg5Mw4xFELBsatjpH1HhyeeF8fAEkVB6kFr16XMKXdiNfFvEi+FZ/RUkk5asAxgkj6wb0vEFspi/V5ADqXM9wTOwt0V0pFkSFZx5qjtlalJ3oZuJo736APYFo8sEvO+5spP3jeT+dgWHAcWeoQcx+aukh9DTqgUrQ7FawtmSjFYYlAoQydQ3/NKTWSaJP58IgWWj4DxdpV67Y1uJeKezJ63D0S35k1aE8JXWK8TY8jYqKPLwa+5042j/fXy3ZwdrGaooYB9YvLkqvf7awHKPS6FkJf363aTE3hch3w8F",
+        "ansible_swapfree_mb": 9700,
+        "ansible_swaptotal_mb": 9700,
+        "ansible_system": "Linux",
+        "ansible_system_vendor": "Dell Inc.",
+        "ansible_virbr0": {
+            "ipv4": {
+                "address": "192.168.122.1",
+                "netmask": "255.255.255.0",
+                "network": "192.168.122.0"
+            },
+            "macaddress": "06:e2:18:f8:cf:19"
+        },
+        "ansible_virtualization_role": "host",
+        "ansible_virtualization_type": "kvm",
+        "group_names": [
+            "linux",
+            "ubuntu"
+        ],
+        "groups": {
+            "all": [],
+            "buildhosts": [],
+            "cent": [
+                {
+                    "ansible_ssh_port": 2210,
+                    "group_names": [
+                        "buildhosts",
+                        "cent",
+                        "linux"
+                    ],
+                    "inventory_hostname": "somehost25a"
+                },
+                {
+                    "ansible_ssh_port": 2211,
+                    "group_names": [
+                        "buildhosts",
+                        "cent",
+                        "linux"
+                    ],
+                    "inventory_hostname": "somehost25b"
+                },
+                {
+                    "ansible_ssh_port": 2212,
+                    "group_names": [
+                        "buildhosts",
+                        "cent",
+                        "linux"
+                    ],
+                    "inventory_hostname": "somehost25c"
+                },
+                {
+                    "ansible_ssh_port": 2213,
+                    "group_names": [
+                        "buildhosts",
+                        "cent",
+                        "linux"
+                    ],
+                    "inventory_hostname": "somehost25d"
+                }
+            ],
+            "linux": [],
+            "sles": [
+                {
+                    "group_names": [
+                        "buildhosts",
+                        "linux",
+                        "sles"
+                    ],
+                    "inventory_hostname": "24a"
+                }
+            ],
+            "ubuntu": [
+                {
+                    "group_names": [
+                        "linux",
+                        "ubuntu"
+                    ],
+                    "inventory_hostname": "somehost24"
+                },
+                {
+                    "group_names": [
+                        "linux",
+                        "ubuntu"
+                    ],
+                    "inventory_hostname": "somehost25"
+                },
+                {
+                    "group_names": [
+                        "linux",
+                        "ubuntu"
+                    ],
+                    "inventory_hostname": "somehostaus"
+                }
+            ],
+            "ungrouped": [
+                {
+                    "group_names": [
+                        "ungrouped"
+                    ],
+                    "inventory_hostname": "127.0.0.1"
+                }
+            ]
+        },
+        "inventory_hostname": "somehost25",
+        "metadata": "$HOME/.ansible/tmp/setup"
+    },
+    "changed": true,
+    "md5sum": "7b1a6d9ef7feda44dacd431d607078a7",
+    "verbose_override": true,
+    "written": "/home/nharman/.ansible/tmp/setup"
+}

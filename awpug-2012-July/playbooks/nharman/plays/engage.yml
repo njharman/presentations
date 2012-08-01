@@ -1,0 +1,8 @@
+---
+- name: tmp dir
+  action: file path=/home/nharman/tmp mode=0700 owner=nharman group=nharman state=directory
+- name: engage.sh
+  action: copy src=/home/nharman/.dotfiles/engage.sh dest=/home/nharman/tmp/engage.sh mode=0700 owner=nharman group=nharman creates=/home/nharman/.dotfiles
+- name: .dotfiles
+  action: command su -c /home/nharman/tmp/engage.sh nharman creates=/home/nharman/.dotfiles
+  only_if: "'$git_pkg'"

@@ -1,0 +1,9 @@
+---
+- name: Norm!
+  action: user name=nharman group=nharman append=yes shell=/bin/bash
+
+- name: home dir permissions
+  action: command chown -R nharman:nharman /home/nharman
+
+- name: nharman ssh key
+  action: authorized_key user=nharman key="$ssh_key"

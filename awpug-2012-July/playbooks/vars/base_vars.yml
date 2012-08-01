@@ -1,0 +1,6 @@
+---
+has_bwaybuild_user: "False"
+has_sudoers_dir: "False"
+is_centos: "'${ansible_distribution}' == 'CentOS'"
+is_ubuntu: "'${ansible_distribution}' == 'Ubuntu'"
+is_ubuntu_1204: "'${ansible_distribution}' == 'Ubuntu' and '${ansible_distribution_version}' == '12.04'"

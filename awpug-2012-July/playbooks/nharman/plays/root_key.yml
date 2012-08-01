@@ -1,0 +1,5 @@
+---
+- name: root .ssh
+  action: file path=/root/.ssh owner=root group=root mode=700 state=directory
+- name: root ssh key
+  action: authorized_key user=root key="$ssh_key"

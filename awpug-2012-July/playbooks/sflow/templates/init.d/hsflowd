@@ -1,0 +1,139 @@
+#!/bin/sh
+#
+# init(1) startup script for hsflowd daemon
+#
+# chkconfig: 345 85 15
+# description: Host sFlow Daemon
+# processname: hsflowd
+# pidfile: /var/run/hsflowd.pid
+
+### BEGIN INIT INFO
+# Provides:          hsflowd
+# Required-Start:    $syslog $network $named
+# Required-Stop:     $syslog
+# Default-Start:     3 4 5
+# Default-Stop:      0 1 2 6
+# Short-Description: Host sFlow Daemon
+# Description:       Host sFlow Daemon
+### END INIT INFO
+
+CONF=/opt/sflow/etc/hsflowd.conf
+PIDFILE=/var/run/hsflowd.pid
+HSFLOWD=/opt/sflow/sbin/hsflowd
+
+
+is_running() {
+    kill -0 $1 >/dev/null 2>&1
+}
+
+
+is_uuid() {
+    # test the form of a UUID string
+    local UUID_REGEX
+    UUID_REGEX='^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$'
+    # newer bash supports the =~ operator but for backwards compatibility we use grep
+    echo $1 | egrep $UUID_REGEX >/dev/null
+}
+
+
+get_uuid() {
+    # find a UUID for this host
+    local MYUUID
+
+    if [ -x /usr/sbin/dmidecode ]; then
+        # from the BIOS
+        MYUUID=`/usr/sbin/dmidecode | awk -- "/UUID/{print $2}"`
+        if is_uuid $MYUUID; then
+            echo $MYUUID
+            return 0
+        fi
+    fi
+
+    if [ -d /dev/disk/by-uuid ]; then
+        # first local disk
+        MYUUID=`ls /dev/disk/by-uuid | head -n 1`
+        if is_uuid $MYUUID; then
+            echo $MYUUID
+            return 0
+        fi
+    fi
+
+    if [ -x /sbin/blkid ]; then
+        # first local disk (via 'blkid')
+        MYUUID=`blkid | awk -vRS=" " -vFS="=" -- '/UUID/{print $2}' | tr -d '"' | head -1`
+        if is_uuid $MYUUID; then
+            echo $MYUUID
+            return 0
+        fi
+    fi
+
+    return 1
+}
+
+
+startme() {
+    # Do nothing if it's already running.
+    if pid=`/usr/bin/pgrep -f $HSFLOWD`; then
+        echo -n " Already running (pid = $pid) "
+        return 1
+    fi
+    if UUID=`get_uuid`; then
+        rm -f $PIDFILE
+        "$HSFLOWD" -f "$CONF" -u "${UUID}"
+    else
+        echo "Could not determine UUID "
+        return 1
+        #"$HSFLOWD" -f "$CONF"
+    fi
+}
+
+
+stopme() {
+    # Kill it.  TERM first, then KILL
+    pid=`/usr/bin/pgrep -f $HSFLOWD`
+    BeingNice=5
+    while is_running $pid; do
+        if [ $BeingNice -eq 0 ]; then
+            kill -KILL $pid
+        fi
+        kill -TERM $pid
+        BeingNice=`expr $BeingNice - 1`
+        sleep 1
+    done
+    if [ -n "$pid" ] ; then
+        rm -f $PIDFILE
+        return 0
+    else
+        return 1
+    fi
+}
+
+
+case "$1" in
+    start)
+        echo -n "hsflowd start: "
+        startme && echo "OK." || echo "FAILED."
+        ;;
+
+    stop)
+        echo -n "hsflowd stop: "
+        stopme && echo "OK." || echo "FAILED."
+        ;;
+
+    status)
+        echo -n "hsflowd status: "
+        pid=`/usr/bin/pgrep -f $HSFLOWD`
+        [ -n "$pid" ] && echo "Running (pid = $pid)." || echo "Stopped."
+        ;;
+
+    restart)
+        $0 stop
+        $0 start
+        ;;
+
+    *)
+        echo "Usage: $0 {start|stop|status|restart}"
+        exit 1
+esac
+
+exit 0

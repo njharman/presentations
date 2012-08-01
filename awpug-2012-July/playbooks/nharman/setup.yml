@@ -1,0 +1,20 @@
+---
+- name: Create nharman account
+  hosts: all
+  user: njharman
+  sudo: True
+
+  vars_files:
+    - ../vars/base_vars.yml
+    - [ "../vars/os_${ansible_distribution}_${ansible_distribution_version}.yml", "../vars/os_${ansible_distribution}.yml", "../vars/os_Defaults.yml" ]
+    - norm_vars.yml
+
+  #vars_prompt:
+  #  name: "what is your name?"
+  #  quest: "what is your quest?"
+  #  favcolor: "what is your favorite color?"
+
+  tasks:
+  - include: plays/root_key.yml
+  - include: plays/home.yml
+  - include: plays/engage.yml
