@@ -1,6 +1,11 @@
 Ansible - The Future is Now!
 ****************************
 
+Presentation by **Norman J. Harman Jr.** <njharman@gmail.com>
+
+Code and Source: https://github.com/njharman/presentations
+
+
 Who
 ===
 
@@ -23,11 +28,8 @@ Simple, (not simplistic), Python based
    PageBreak
 
 
-Why
-===
-
 Why automation at all?
------------------------------
+======================
 Even if you only have one server...
   - correctness, repeatability, confidence
   - documentation ~ "code" is the best type of doc
@@ -35,7 +37,7 @@ Even if you only have one server...
   - ad-hoc remote execution changed (for the better) how I work
 
 Why Ansible in particular?
---------------------------
+==========================
 [mostly from webpage http://ansible.github.com/]
   - You have a smallish (<20 number of systems).
   - You have many systems spread across many "customers".
@@ -63,8 +65,9 @@ Why Ansible in particular?
 Gettin It
 =========
 The usual suspects pip, rpm, setup.py, make?
+Also, running from checkout:
 
-Also, running from checkout ::
+.. code-block:: bash
 
   git clone git://github.com/ansible/ansible.git
   cd ./ansible
@@ -82,7 +85,7 @@ Expects, rightfully so, that you are using ssh keys. But if you're lame, use *-k
 
 Parralizes across 10 hosts by default, alter with *-f (--forks)*.
 
-::
+.. code-block:: bash
 
    ansible local -a "lsb_release -a"
 
@@ -93,21 +96,27 @@ Parralizes across 10 hosts by default, alter with *-f (--forks)*.
 
 The above are all using the "command" module_, the default. It runs command
 directly, not in a shell, therefor no pipes, redirections, env vars.  Use
-"shell" for that.  Even lower level is raw ::
+"shell" for that.  Even lower level is raw:
+
+.. code-block:: bash
 
     ansible local -m shell -a "echo 'Use me some $SHELL vars and pipes.' | cat"
     ansible all -m raw -a "yum install python-simplejson"
 
 More on Inventory
 -----------------
-Select more than one, all but one, all ::
+Select more than one, all but one, all:
+
+.. code-block:: bash
 
    ansible localhost:var -a "hostname"
    ansible var:!bar -a "hostname"
    ansible all -a "hostname"
 
 
-Select targets by wildcard (hosts only not groups) ::
+Select targets by wildcard (hosts only not groups):
+
+.. code-block:: bash
 
    ansible ec2* -a "hostname"
 
@@ -116,13 +125,13 @@ Select targets by wildcard (hosts only not groups) ::
 Pluggable
 
 
-
-
 Native SSH vs Paramiko
 ----------------------
 
 Paramiko is python ssh lib, just works.  Native SSH supports advanced OpenSSH
-features (Kerberized, jumphosts, other shenanigans). ::
+features (Kerberized, jumphosts, other shenanigans).
+
+.. code-block:: bash
 
     ANSIBLE_TRANSPORT='ssh'  # or -c (--connection) command line arg
     ANSIBLE_SSH_ARGS=''  # defaults to using ControlMaster, you want ControlMaster
@@ -156,7 +165,9 @@ Vars everywhere
   - sflow/setup.yml
   - nharman/setup.yml
 
-Can run playbooks locally (not via ssh) ::
+Can run playbooks locally (not via ssh)
+
+.. code-block:: bash
 
    ansible-playbook playbook.yml --connection=local
 
